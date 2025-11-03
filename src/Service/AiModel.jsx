@@ -5,10 +5,10 @@ import {
 } from "@google/generative-ai";
 
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(apiKey);
+const genAI = new GoogleGenerativeAI(apiKey, { apiVersion: 'v1' });
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "models/gemini-1.5-flash-latest",
 });
 
 const generationConfig = {
