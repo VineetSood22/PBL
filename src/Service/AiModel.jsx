@@ -5,10 +5,13 @@ import {
 } from "@google/generative-ai";
 
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(apiKey);
+if (!apiKey) {
+  throw new Error("VITE_GEMINI_API_KEY is not defined. Please set the Gemini API key in your environment variables.");
+}
+const genAI = new GoogleGenerativeAI(apiKey, { apiVersion: 'v1' });
 
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
+  model: "models/gemini-1.5-flash-latest",
 });
 
 const generationConfig = {
